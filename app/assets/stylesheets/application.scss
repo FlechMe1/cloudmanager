@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins|Roboto');
+
+@import "vendors/base/vendors.bundle";
+@import "demo/default/base/style.bundle";
+
+@import "fullcalendar";
+
+strong {
+  font-weight: 700;
+}
+
+@media(min-width: 768px){
+  .m-header-menu {
+    min-width: 300px;
+  }
+}
+.m-header-menu form input{
+  border: none;
+}
+.m-topbar .m-topbar__nav.m-nav > .m-nav__item > .m-nav__link .m-topbar__username{
+  color: #716aca;
+  font-size: 1rem;
+}

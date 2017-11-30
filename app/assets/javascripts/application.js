@@ -13,4 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require vendors/base/vendors.bundle
+//= require demo/default/base/scripts.bundle
+//= require app/js/dashboard
+
+$(document).ready(function(){
+  $('#calendar').fullCalendar({});
+});

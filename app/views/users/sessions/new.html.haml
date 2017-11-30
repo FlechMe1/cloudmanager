@@ -1,0 +1,29 @@
+.m-login__head
+  %h3.m-login__title
+    Connexion
+
+.m-login__form.m-form
+  = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+
+    = devise_error_messages!
+
+    .form-group.m-form__group
+      = f.email_field :email, autocomplete: "off", autofocus: true, class: "form-control m-input", placeholder: 'Email'
+
+    .form-group.m-form__group
+      = f.password_field :password, autocomplete: "off", class: "form-control m-input m-login__form-input--last"
+
+    .row.m-login__form-sub
+      - if devise_mapping.rememberable?
+        .col.m--align-left.m-login__form-left
+          %label.m-checkbox.m-checkbox--light
+            = f.check_box :remember_me
+            Se souvenir de moi
+            %span
+      .col.m--align-right.m-login__form-right
+        = link_to new_password_path(resource_name), class: "m_login_forget_password m-link" do
+          Mot de passe oublié ?
+
+    .m-login__form-action
+      %button#m_login_signin_submit.btn.btn-focus.m-btn.m-btn--pill.m-btn--custom.m-btn--air.m-login__btn.m-login__btn--primary{type: :submit}
+        Connexion

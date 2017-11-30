@@ -1,0 +1,24 @@
+%html
+  %head
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+    %title= content_for?(:title) ? yield(:title) : 'Cloud Manager'
+    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Cloud Manager'}"}
+    = stylesheet_link_tag 'application', media: 'all'
+    = csrf_meta_tags
+
+
+%body.m--skin-.m-header--fixed.m-header--fixed-mobile.m-aside-left--enabled.m-aside-left--skin-dark.m-aside-left--offcanvas.m-footer--push.m-aside--offcanvas-default
+  / begin:: Page
+  .m-grid.m-grid--hor.m-grid--root.m-page
+    #m_login.m-grid__item.m-grid__item--fluid.m-grid.m-grid--hor.m-login.m-login--singin.m-login--2.m-login-2--skin-1{:style => "background-image: url(../../../assets/app/media/img//bg/bg-1.jpg);"}
+      .m-grid__item.m-grid__item--fluid.m-login__wrapper
+        .m-login__container
+          .m-login__logo
+            %a{:href => "#"}
+              %img{:src => "../../../assets/app/media/img//logos/logo-1.png"}/
+          .m-login__signin
+            = yield
+
+
+  = javascript_include_tag 'application'
+  = bootstrap_notification

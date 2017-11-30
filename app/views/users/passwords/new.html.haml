@@ -1,0 +1,19 @@
+.m-login__head
+  %h3.m-login__title
+    Mot de passe oublié
+
+.m-login__form.m-form
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+    = devise_error_messages!
+
+    .form-group.m-form__group
+      = f.email_field :email, autocomplete: "off", autofocus: true, class: "form-control m-input", placeholder: 'Email'
+
+    .row.m-login__form-sub
+      .col.m--align-right.m-login__form-right
+        = link_to new_user_session_path, class: "m_login_forget_password m-link" do
+          Revenir à la page de connexion
+
+    .m-login__form-action
+      %button#m_login_signin_submit.btn.btn-focus.m-btn.m-btn--pill.m-btn--custom.m-btn--air.m-login__btn.m-login__btn--primary{type: :submit}
+        Redéfinir mon mot de passe
