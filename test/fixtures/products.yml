@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  label: MyString
+  reference: MyString
+  description: MyText
+  buying_price: 9.99
+  buying_price_new: 9.99
+  selling_price: 9.99
+  taxes: 9.99
+  selling_price_wt: 9.99
+  tax_credit: false
+
+two:
+  label: MyString
+  reference: MyString
+  description: MyText
+  buying_price: 9.99
+  buying_price_new: 9.99
+  selling_price: 9.99
+  taxes: 9.99
+  selling_price_wt: 9.99
+  tax_credit: false

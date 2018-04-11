@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Label:
+  = @product.label
+%p
+  %b Reference:
+  = @product.reference
+%p
+  %b Description:
+  = @product.description
+%p
+  %b Buying price:
+  = @product.buying_price
+%p
+  %b Buying price new:
+  = @product.buying_price_new
+%p
+  %b Selling price:
+  = @product.selling_price
+%p
+  %b Taxes:
+  = @product.taxes
+%p
+  %b Selling price wt:
+  = @product.selling_price_wt
+%p
+  %b Tax credit:
+  = @product.tax_credit
+
+= link_to 'Edit', edit_product_path(@product)
+\|
+= link_to 'Back', products_path

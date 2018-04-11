@@ -1,0 +1,190 @@
+.m-grid__item.m-grid__item--fluid.m-wrapper
+  / BEGIN: Subheader
+  .m-subheader
+    .d-flex.align-items-center
+      .mr-auto
+        %h3.m-subheader__title.m-subheader__title--separator
+          Produits
+
+        %ul.m-subheader__breadcrumbs.m-nav.m-nav--inline
+          %li.m-nav__item.m-nav__item--home
+            = link_to root_url, class: "m-nav__link m-nav__link--icon" do
+              %i.m-nav__link-icon.fa.fa-home
+          %li.m-nav__separator
+            \-
+          %li.m-nav__item
+            %a.m-nav__link{:href => ""}
+              %span.m-nav__link-text
+                Ventes
+          %li.m-nav__separator
+            \-
+          %li.m-nav__item
+            = link_to products_url, class: "m-nav__link" do
+              %span.m-nav__link-text
+                Produits
+
+  / END: Subheader
+  .m-content
+    .m-portlet.m-portlet--mobile
+      .m-portlet__head
+        .m-portlet__head-caption
+          .m-portlet__head-title
+            %h3.m-portlet__head-text
+              Nos produits
+
+      .m-portlet__body
+        / begin: Search Form
+        .m-form.m-form--label-align-right.m--margin-top-20.m--margin-bottom-30
+          .row.align-items-center
+            .col-xl-8.order-2.order-xl-1
+              .form-group.m-form__group.row.align-items-center
+                .col-md-4
+                  .m-form__group.m-form__group--inline
+                    .m-form__label
+                      %label
+                        Status:
+                    .m-form__control
+                      %select#m_form_status.form-control.m-bootstrap-select.m-bootstrap-select--solid
+                        %option{:value => ""}
+                          All
+                        %option{:value => "1"}
+                          Pending
+                        %option{:value => "2"}
+                          Delivered
+                        %option{:value => "3"}
+                          Canceled
+                  .d-md-none.m--margin-bottom-10
+                .col-md-4
+                  .m-form__group.m-form__group--inline
+                    .m-form__label
+                      %label.m-label.m-label--single
+                        Type:
+                    .m-form__control
+                      %select#m_form_type.form-control.m-bootstrap-select.m-bootstrap-select--solid
+                        %option{:value => ""}
+                          All
+                        %option{:value => "1"}
+                          Online
+                        %option{:value => "2"}
+                          Retail
+                        %option{:value => "3"}
+                          Direct
+                  .d-md-none.m--margin-bottom-10
+                .col-md-4
+                  .m-input-icon.m-input-icon--left
+                    %input#generalSearch.form-control.m-input.m-input--solid{:placeholder => "Search...", :type => "text"}/
+                    %span.m-input-icon__icon.m-input-icon__icon--left
+                      %span
+                        %i.la.la-search
+            .col-xl-4.order-1.order-xl-2.m--align-right
+              = link_to new_product_path, class: "btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" do
+                %span
+                  %i.fa.fa-plus
+                  %span
+                    Créer un produit
+              .m-separator.m-separator--dashed.d-xl-none
+
+        .m-datatable.m-datatable--default.m-datatable--brand.m-datatable--loaded
+          %table#m-datatable--1407263048811.m-datatable__table{:style => "display: block; height: auto; overflow-x: auto;", :width => "100%"}
+            %thead.m-datatable__head
+              %tr.m-datatable__row
+                %th.m-datatable__cell.m-datatable__cell--sort
+                  %span #
+                %th.m-datatable__cell.m-datatable__cell--sort
+                  %span Libellé
+                %th.m-datatable__cell.m-datatable__cell--sort
+                  %span Référence
+                %th.m-datatable__cell.m-datatable__cell--sort
+                  %span Prix de vente
+                %th.m-datatable__cell.m-datatable__cell--sort
+                  %span Action
+
+            %tbody.m-datatable__body
+              - @products.each do |p|
+                %tr.m-datatable__row
+                  %td.m-datatable__cell
+                    %span= p.id
+                  %td.m-datatable__cell
+                    %span= p.label
+                  %td.m-datatable__cell
+                    %span= p.reference
+                  %td.m-datatable__cell
+                    %span= number_to_currency p.selling_price
+                  %td.m-datatable__cell
+                    %span
+
+
+
+
+          .m-datatable__pager.m-datatable--paging-loaded.clearfix
+            %ul.m-datatable__pager-nav
+              %li
+                %a.m-datatable__pager-link.m-datatable__pager-link--first.m-datatable__pager-link--disabled{"data-page" => "1", :disabled => "disabled", :title => "First"}
+                  %i.la.la-angle-double-left
+              %li
+                %a.m-datatable__pager-link.m-datatable__pager-link--prev.m-datatable__pager-link--disabled{"data-page" => "1", :disabled => "disabled", :title => "Previous"}
+                  %i.la.la-angle-left
+              %li{:style => "display: none;"}
+                %a.m-datatable__pager-link.m-datatable__pager-link--more-prev{"data-page" => "1", :title => "More pages"}
+                  %i.la.la-ellipsis-h
+              %li{:style => "display: none;"}
+                %input.m-pager-input.form-control{:title => "Page number", :type => "text"}/
+              %li
+                %a.m-datatable__pager-link.m-datatable__pager-link-number.m-datatable__pager-link--active{"data-page" => "1", :title => "1"} 1
+              %li
+                %a.m-datatable__pager-link.m-datatable__pager-link-number{"data-page" => "2", :title => "2"} 2
+              %li
+                %a.m-datatable__pager-link.m-datatable__pager-link-number{"data-page" => "3", :title => "3"} 3
+              %li
+                %a.m-datatable__pager-link.m-datatable__pager-link-number{"data-page" => "4", :title => "4"} 4
+              %li
+                %a.m-datatable__pager-link.m-datatable__pager-link-number{"data-page" => "5", :title => "5"} 5
+              %li
+                %a.m-datatable__pager-link.m-datatable__pager-link-number{"data-page" => "6", :title => "6"} 6
+              %li
+                %a.m-datatable__pager-link.m-datatable__pager-link--more-next{"data-page" => "7", :title => "More pages"}
+                  %i.la.la-ellipsis-h
+              %li
+                %a.m-datatable__pager-link.m-datatable__pager-link--next{"data-page" => "2", :title => "Next"}
+                  %i.la.la-angle-right
+              %li
+                %a.m-datatable__pager-link.m-datatable__pager-link--last{"data-page" => "15", :title => "Last"}
+                  %i.la.la-angle-double-right
+            .m-datatable__pager-info
+              .btn-group.bootstrap-select.m-datatable__pager-size{:style => "width: 70px;"}
+                %button.btn.dropdown-toggle.btn-default{"data-toggle" => "dropdown", :role => "button", :title => "Select page size", :type => "button"}
+                  %span.filter-option.pull-left> 10
+                  \ 
+                  %span.bs-caret
+                    %span.caret
+                .dropdown-menu.open{:role => "combobox"}
+                  %ul.dropdown-menu.inner{"aria-expanded" => "false", :role => "listbox"}
+                    %li.selected{"data-original-index" => "1"}
+                      %a{"aria-disabled" => "false", "aria-selected" => "true", "data-tokens" => "null", :role => "option", :tabindex => "0"}
+                        %span.text 10
+                        %span.glyphicon.glyphicon-ok.check-mark
+                    %li{"data-original-index" => "2"}
+                      %a{"aria-disabled" => "false", "aria-selected" => "false", "data-tokens" => "null", :role => "option", :tabindex => "0"}
+                        %span.text 20
+                        %span.glyphicon.glyphicon-ok.check-mark
+                    %li{"data-original-index" => "3"}
+                      %a{"aria-disabled" => "false", "aria-selected" => "false", "data-tokens" => "null", :role => "option", :tabindex => "0"}
+                        %span.text 30
+                        %span.glyphicon.glyphicon-ok.check-mark
+                    %li{"data-original-index" => "4"}
+                      %a{"aria-disabled" => "false", "aria-selected" => "false", "data-tokens" => "null", :role => "option", :tabindex => "0"}
+                        %span.text 50
+                        %span.glyphicon.glyphicon-ok.check-mark
+                    %li{"data-original-index" => "5"}
+                      %a{"aria-disabled" => "false", "aria-selected" => "false", "data-tokens" => "null", :role => "option", :tabindex => "0"}
+                        %span.text 100
+                        %span.glyphicon.glyphicon-ok.check-mark
+                %select.selectpicker.m-datatable__pager-size{"data-selected" => "10", "data-width" => "70px", :tabindex => "-98", :title => "Select page size"}
+                  %option.bs-title-option{:value => ""} Select page size
+                  %option{:value => "10"} 10
+                  %option{:value => "20"} 20
+                  %option{:value => "30"} 30
+                  %option{:value => "50"} 50
+                  %option{:value => "100"} 100
+              %span.m-datatable__pager-detail Displaying 1 - 10 of 143 records
+

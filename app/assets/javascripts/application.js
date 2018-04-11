@@ -16,7 +16,8 @@
 //= require vendors/base/vendors.bundle
 //= require demo/default/base/scripts.bundle
 //= require app/js/dashboard
+//= require products
 
 $(document).ready(function(){
-  $('#calendar').fullCalendar({});
+  //$('#calendar').fullCalendar({});
 });

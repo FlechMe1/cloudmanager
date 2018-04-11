@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130134615) do
+ActiveRecord::Schema.define(version: 20171130170428) do
+
+  create_table "products", force: true do |t|
+    t.string   "label"
+    t.string   "reference"
+    t.text     "description"
+    t.decimal  "buying_price",     precision: 10, scale: 0
+    t.decimal  "buying_price_new", precision: 10, scale: 0
+    t.decimal  "selling_price",    precision: 10, scale: 0
+    t.decimal  "taxes",            precision: 10, scale: 0
+    t.decimal  "selling_price_wt", precision: 10, scale: 0
+    t.boolean  "tax_credit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "firstname"
