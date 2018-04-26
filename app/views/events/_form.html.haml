@@ -1,0 +1,26 @@
+.modal-header
+  - if event.new_record?
+    %h5.modal-title Ajouter un événement
+  - else
+    %h5.modal-title Modifier un événement
+  %button.close{type: 'button', data:{dismiss: 'modal'}, aria:{label: 'Close'}}
+    = icon "times"
+
+= form_for event do |f|
+  = f.hidden_field :user_id
+  .modal-body
+    .form-group
+      = f.text_field :name, class: 'form-control', placeholder: 'Nom'
+    .form-group
+      = f.datetime_local_field :start_at, class: 'form-control', placeholder: 'Date de début'
+    .form-group
+      = f.datetime_local_field :end_at, class: 'form-control', placeholder: 'Date de fin'
+    .form-group
+      = f.select :category, options_for_select(events_categories), {prompt: 'Catégorie'}, class: 'form-control'
+    .form-group
+      = f.text_area :description, class: 'form-control', placeholder: 'Description', rows: 3
+  .modal-footer
+    %button.btn.btn-success{type: :submit}
+      Enregistrer
+    %button.btn.btn-danger{data:{dismiss: 'modal'}}
+      Annuler

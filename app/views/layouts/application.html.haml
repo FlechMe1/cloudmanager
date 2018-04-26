@@ -1,119 +1,61 @@
 !!!
 %html
   %head
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-    %title= content_for?(:title) ? yield(:title) : 'Cloud Manager'
-    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Cloud Manager'}"}
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1.0"}
+    %title CLOUD MANAGER
+    %meta{:name => "description", :content => "CRM Cloud Manager"}
     = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
+    = favicon_link_tag "/favicon.ico"
     = csrf_meta_tags
 
-  %body.m-page--fluid.m--skin-.m-content--skin-light2.m-header--fixed.m-header--fixed-mobile.m-aside-left--enabled.m-aside-left--skin-dark.m-aside-left--offcanvas.m-footer--push.m-aside--offcanvas-default
-    / begin:: Page
-    .m-grid.m-grid--hor.m-grid--root.m-page
-      / BEGIN: Header
-      %header.m-grid__item.m-header{"data-minimize-mobile-offset" => "200", "data-minimize-offset" => "200"}
-        .m-container.m-container--fluid.m-container--full-height
-          .m-stack.m-stack--ver.m-stack--desktop
-            / BEGIN: Brand
-            .m-stack__item.m-brand.m-brand--skin-dark
-              .m-stack.m-stack--ver.m-stack--general
-                .m-stack__item.m-stack__item--middle
-                  = link_to root_url, class: "m-brand" do
-                    Cloud
-                    %strong Manager
+  %body
+    / Left Panel
+    %aside#left-panel.left-panel
+      %nav.navbar.navbar-expand-sm.navbar-default
+        .navbar-header
+          %button.navbar-toggler{"aria-controls" => "main-menu", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#main-menu", "data-toggle" => "collapse", :type => "button"}
+            %i.fa.fa-bars
+          %a.navbar-brand{:href => "./"}
+            CLOUD MANAGER
+          %a.navbar-brand.hidden{:href => "./"}
+            CM
 
-                .m-stack__item.m-stack__item--middle.m-brand__tools
-                  / BEGIN: Left Aside Minimize Toggle
-                  %a#m_aside_left_minimize_toggle.m-brand__icon.m-brand__toggler.m-brand__toggler--left.m--visible-desktop-inline-block{href: "javascript:;"}
-                    %span
-                  / END
-                  / BEGIN: Responsive Aside Left Menu Toggler
-                  %a#m_aside_left_offcanvas_toggle.m-brand__icon.m-brand__toggler.m-brand__toggler--left.m--visible-tablet-and-mobile-inline-block{href: "javascript:;"}
-                    %span
-                  / END
-                  / BEGIN: Responsive Header Menu Toggler
-                  %a#m_aside_header_menu_mobile_toggle.m-brand__icon.m-brand__toggler.m--visible-tablet-and-mobile-inline-block{href: "javascript:;"}
-                    %span
-                  / END
-                  / BEGIN: Topbar Toggler
-                  %a#m_aside_header_topbar_mobile_toggle.m-brand__icon.m--visible-tablet-and-mobile-inline-block{href: "javascript:;"}
-                    %i.flaticon-more
-                  / BEGIN: Topbar Toggler
-
-            / END: Brand
-            #m_header_menu.m-header-menu.m-aside-header-menu-mobile.m-aside-header-menu-mobile--offcanvas.m-header-menu--skin-light.m-header-menu--submenu-skin-light.m-aside-header-menu-mobile--skin-dark.m-aside-header-menu-mobile--submenu-skin-dark
-              %ul.m-menu__nav.m-menu__nav--submenu-arrow
-                %li.m-nav__item.m--full-height
-                  %form.m--full-height
-                    .form-group.m-form__group.m--full-height
-                      .m-input-icon.m-input-icon--left.m--full-height
-                        %input.form-control.form-control-lg.m-input.m--full-height{type: :text, placeholder: "Rechercher..."}
-                        %span.m-input-icon__icon.m-input-icon__icon--left
-                          %span
-                            %i.fa.fa-search
+        #main-menu.main-menu.collapse.navbar-collapse
+          = render "layouts/sidebar"
 
 
-            #m_header_nav.m-stack__item.m-stack__item--fluid.m-header-head
-              / BEGIN: Horizontal Menu
-              %button#m_aside_header_menu_mobile_close_btn.m-aside-header-menu-mobile-close.m-aside-header-menu-mobile-close--skin-dark
-                %i.la.la-close
-              #m_header_topbar.m-topbar.m-stack.m-stack--ver.m-stack--general
-                .m-stack__item.m-topbar__nav-wrapper
-                  %ul.m-topbar__nav.m-nav.m-nav--inline
-                    %li.m-nav__item.m-dropdown.m-dropdown--large.m-dropdown--header-bg-fill.m-dropdown--arrow.m-dropdown--align-right.m-dropdown--align-push.m-dropdown--mobile-full-width.m-dropdown--skin-light.m-stack{"data-dropdown-toggle" => "click"}
-                      %a{href: '#', class: 'm-nav__link m-dropdown__toggle'}
-                        %span.m-nav__link-icon
-                          %i.fa.fa-user
-                        %span.m-topbar__username= current_user.fullname
+    #right-panel.right-panel
+      %header#header.header
+        .header-menu
+          .col-sm-7
+            %a#menuToggle.menutoggle.float-left
+              = icon 'tasks'
+            .header-left
+              %button.search-trigger
+                = icon 'search'
+              .form-inline
+                %form.search-form
+                  %input.form-control.mr-sm-2{type: :text, placeholder: 'Recherche...'}
+                  %button.search-close{type: :submit}
+                    = icon 'close'
 
-                      .m-dropdown__wrapper
-                        %span.m-dropdown__arrow.m-dropdown__arrow--right.m-dropdown__arrow--adjust
-                        .m-dropdown__inner
-                          .m-dropdown__header.m--align-center
-                            .m-card-user.m-card-user--skin-dark
-                              .m-card-user__details
-                                %span.m-card-user__name.m--font-weight-500
-                                  = current_user.fullname
-                                %a.m-card-user__email.m--font-weight-300.m-link{href: "mailto:#{current_user.fullname}"}
-                                  = current_user.email
-                          .m-dropdown__body
-                            .m-dropdown__content
-                              %ul.m-nav.m-nav--skin-light
-                                %li.m-nav__item
-                                  %a.m-nav__link{href: "header/profile.html"}
-                                    %i.m-nav__link-icon.flaticon-profile-1
-                                    %span.m-nav__link-title
-                                      %span.m-nav__link-wrap
-                                        %span.m-nav__link-text
-                                          Mon profil
+              .dropdown.for-notification
+                %button.btn.btn-secondary.dropdown-toggle#notification{type: :button, data:{toggle: 'dropdown'}}
+                  = icon 'calendar'
+                  %span.count.bg-danger 5
 
-                                %li.m-nav__separator.m-nav__separator--fit
-                                %li.m-nav__item
-                                  = link_to destroy_user_session_path, method: :delete, class: "btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" do
-                                    Déconnexion
+                .dropdown-menu{'aria-labelledby' => "notification" }
+                  %p.red 3 notifications
+          .col-sm-5
 
-              / END: Topbar
-      / END: Header
-      / begin::Body
 
-      .m-grid__item.m-grid__item--fluid.m-grid.m-grid--ver-desktop.m-grid--desktop.m-body
-        = render 'layouts/sidebar'
+            .user-area.dropdown.float-right
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#"}
+                = image_tag 'avatar.jpg', class: "user-avatar rounded-circle"
+              .user-menu.dropdown-menu
+                = link_to destroy_user_session_path, method: :delete, class: "nav-link" do
+                  %i.fa.fa-power.-off>
+                  Déconexion
 
-        .m-grid__item.m-grid__item--fluid.m-wrapper
-          = yield
-      / end:: Body
-      / begin::Footer
-      %footer.m-grid__item.m-footer
-        .m-container.m-container--fluid.m-container--full-height.m-page__container
-          .m-stack.m-stack--flex-tablet-and-mobile.m-stack--ver.m-stack--desktop
-            .m-stack__item.m-stack__item--left.m-stack__item--middle.m-stack__item--last
-              %span.m-footer__copyright
-                2017 © Cloud Manager
-
-    / begin::Scroll Top
-    .m-scroll-top.m-scroll-top--skin-top{"data-scroll-offset" => "500", "data-scroll-speed" => "300", "data-toggle" => "m-scroll-top"}
-      %i.la.la-arrow-up
-    / end::Scroll Top
-
-    = javascript_include_tag 'application'
-    = bootstrap_notification
+      = yield

@@ -1,0 +1,23 @@
+.modal-header
+  %h5.modal-title= event.name
+  %button.close{type: 'button', data:{dismiss: 'modal'}, aria:{label: 'Close'}}
+    = icon "times"
+
+.modal-body
+  %p
+  %ul.list-inline
+    %li
+      = icon 'calendar-o', class: 'mr-1'
+      = event.get_dates
+    %li
+      = icon 'tags', class: 'mr-1'
+      = t 'activerecord.attributes.event.categories.' + event.category
+
+  = simple_format event.description
+
+.modal-footer
+  = link_to event, method: :delete, data:{confirm: 'Êtes vous sûr de vouloir supprimer cet événement ?'}, class: 'btn btn-sm btn-danger' do
+    Supprimer l'événement
+
+  = link_to [:edit, event], remote: :true, class: 'btn btn-sm btn-success' do
+    Modifier l'événement

@@ -11,4 +11,13 @@ module ApplicationHelper
     flash_messages.join("\n").html_safe
   end
 
+  def events_categories
+    {
+      'Rendez Vous' => 'appointment',
+      'Appel téléphonique' => 'call',
+      'Réunion' => 'meeting',
+      'Tâche' => 'task',
+      'Email' => 'mail'
+    }
+  end
 end

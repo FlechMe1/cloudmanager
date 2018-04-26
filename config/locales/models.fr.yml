@@ -1,0 +1,30 @@
+fr:
+  activerecord:
+    models:
+      event: "Événement"
+    attributes:
+      user:
+        email: "Email"
+        lastname: "Nom"
+        firstname: "Prénom"
+        website: "Site Internet"
+        about: "A propos"
+        address_1: "Adresse"
+        address_2: "Complément"
+        zipcode: "Code Postal"
+        town: "Ville"
+        password: "Mot de passe"
+        password_confirmation: "Re-saisir mot de passe"
+        cgu: "Conditions d'utilisation"
+      event:
+        name: Titre
+        start_at: Date de début
+        end_at: Date de fin
+        description: description
+        category: Catégorie
+        categories:
+          appointment: Rendez-vous
+          call: Appel téléphonique
+          meeting: Réunion
+          task: Tâche
+          mail: Email

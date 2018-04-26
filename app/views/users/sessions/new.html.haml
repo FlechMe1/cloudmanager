@@ -1,29 +1,27 @@
-.m-login__head
-  %h3.m-login__title
-    Connexion
+%h3.text-center.mb-3
+  Connexion à votre compte
 
-.m-login__form.m-form
-  = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+= form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+  = devise_error_messages!
 
-    = devise_error_messages!
+  .form-group
+    = f.email_field :email, autocomplete: "off", autofocus: true, class: "form-control", placeholder: 'Email'
 
-    .form-group.m-form__group
-      = f.email_field :email, autocomplete: "off", autofocus: true, class: "form-control m-input", placeholder: 'Email'
+  .form-group
+    = f.password_field :password, autocomplete: "off", class: "form-control"
 
-    .form-group.m-form__group
-      = f.password_field :password, autocomplete: "off", class: "form-control m-input m-login__form-input--last"
-
-    .row.m-login__form-sub
+  .form-group
+    .row
       - if devise_mapping.rememberable?
-        .col.m--align-left.m-login__form-left
-          %label.m-checkbox.m-checkbox--light
+        .col-md-6
+          %label.checkbox
             = f.check_box :remember_me
             Se souvenir de moi
-            %span
-      .col.m--align-right.m-login__form-right
-        = link_to new_password_path(resource_name), class: "m_login_forget_password m-link" do
+
+      .col-md-6.text-right
+        = link_to new_password_path(resource_name), class: "" do
           Mot de passe oublié ?
 
-    .m-login__form-action
-      %button#m_login_signin_submit.btn.btn-focus.m-btn.m-btn--pill.m-btn--custom.m-btn--air.m-login__btn.m-login__btn--primary{type: :submit}
-        Connexion
+  .form-group
+    %button.btn.btn-primary.btn-block{type: :submit}
+      Connexion

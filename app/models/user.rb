@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   validates :firstname, :lastname, presence: true
 
+  has_many :events
+
   def fullname
     firstname + " " + lastname
   end

@@ -1,33 +1,47 @@
-/ BEGIN: Left Aside
-%button#m_aside_left_close_btn.m-aside-left-close.m-aside-left-close--skin-dark
-  %i.la.la-close
-#m_aside_left.m-grid__item.m-aside-left.m-aside-left--skin-dark
-  / BEGIN: Aside Menu
-  #m_ver_menu.m-aside-menu.m-aside-menu--skin-dark.m-aside-menu--submenu-skin-dark{"data-menu-dropdown-timeout" => "500", "data-menu-scrollable" => "false", "data-menu-vertical" => "true"}
-    %ul.m-menu__nav.m-menu__nav--dropdown-submenu-arrow
+%ul.nav.navbar-nav
 
-      %li.m-menu__item.m-menu__item--active
-        = link_to root_url, class: "m-menu__link" do
-          %i.m-menu__link-icon.fa.fa-dashboard
-          %span.m-menu__link-title
-            %span.m-menu__link-wrap
-              %span.m-menu__link-text
-                Tableau de bord
+  %h3.menu-title Menu Principal
+  %li{class: "#{(params[:controller] == 'pages') ? 'active' : ''}"}
+    = link_to root_url do
+      = icon "home", class: "menu-icon"
+      Tableau de bord
+
+  %li{class: "#{(params[:controller] == '') ? 'active' : ''}"}
+    = link_to events_url do
+      = icon "calendar-o", class: "menu-icon"
+      Calendrier
+
+  %li{class: "#{(params[:controller] == '') ? 'active' : ''}"}
+    = link_to '#' do
+      = icon "users", class: "menu-icon"
+      Contacts
+
+  %li{class: "#{(params[:controller] == '') ? 'active' : ''}"}
+    = link_to '#' do
+      = icon "bolt", class: "menu-icon"
+      Activités
+
+  %li.menu-item-has-children.dropdown
+    = link_to '#', class: 'dropdown-toggle', data:{toggle: 'dropdown'} do
+      = icon 'shopping-cart', class: "menu-icon"
+      Ventes
+    %ul.sub-menu.children.dropdown-menu
+      %li
+        = icon 'tags'
+        = link_to 'Produits', '#'
 
 
-      %li.m-menu__item.m-menu__item--submenu{"aria-haspopup" => "true", "data-menu-submenu-toggle" => "hover"}
-        %a.m-menu__link.m-menu__toggle{href: "#"}
-          %i.m-menu__link-icon.fa.fa-shopping-cart
-          %span.m-menu__link-text
-            Ventes
-          %i.m-menu__ver-arrow.la.la-angle-right
-        .m-menu__submenu
-          %span.m-menu__arrow
-          %ul.m-menu__subnav
-            %li.m-menu__item{"aria-haspopup" => "true"}
-              = link_to products_path, class: "m-menu__link" do
-                %i.m-menu__link-bullet.m-menu__link-bullet--dot
-                  %span
-                %span.m-menu__link-text
-                  Produits
+  %li{class: "#{(params[:controller] == '') ? 'active' : ''}"}
+    = link_to '#' do
+      = icon "bar-chart", class: "menu-icon"
+      Statistiques
 
+  %li{class: "#{(params[:controller] == '') ? 'active' : ''}"}
+    = link_to '#' do
+      = icon "folder", class: "menu-icon"
+      Documents
+
+  %li{class: "#{(params[:controller] == '') ? 'active' : ''}"}
+    = link_to '#' do
+      = icon "gear", class: "menu-icon"
+      Paramètres
